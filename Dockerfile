@@ -4,4 +4,5 @@ FROM jwilder/nginx-proxy
 COPY ./nginx.tmpl /app/nginx.tmpl
 
 # Increase worker_connections (used to become "ddosed" before)
-RUN sed -E -i 's/^[ \t]*worker_connections[ \t]*[0-9]+;/    worker_connections  10240;/' /etc/nginx/nginx.conf
+# also disable checking of body size (causes problems with seafile, and probably other file-uploading services)
+COPY ./nginx.conf /etc/nginx/nginx.conf
