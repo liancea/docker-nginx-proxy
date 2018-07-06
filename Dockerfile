@@ -1,6 +1,7 @@
 FROM jwilder/nginx-proxy
 
 # allow nginx to interpret incoming PROXY protocol input (ports 81 and 1443)
+# also enable realip module, trusted upstream proxy is defined in environment
 COPY ./nginx.tmpl /app/nginx.tmpl
 
 # Increase worker_connections (used to become "ddosed" before)
